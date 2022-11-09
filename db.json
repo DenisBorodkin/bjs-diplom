@@ -6,10 +6,10 @@
       "password": "demo",
       "id": 1,
       "balance": {
-        "RUB": 1000,
-        "USD": 20,
-        "EUR": 20,
-        "NTC": 3000
+        "RUB": 1812,
+        "USD": 244,
+        "EUR": 198,
+        "NTC": 3334
       }
     },
     {
@@ -114,6 +114,30 @@
       "login": "Yana",
       "password": "1234",
       "id": 10,
+      "balance": {
+        "RUB": 0,
+        "USD": 0,
+        "EUR": 0,
+        "NTC": 0
+      }
+    },
+    {
+      "created_at": "2022-11-04T20:35:10.764Z",
+      "login": " vladimir@demo.ru",
+      "password": "demo",
+      "id": 11,
+      "balance": {
+        "RUB": 0,
+        "USD": 0,
+        "EUR": 0,
+        "NTC": 0
+      }
+    },
+    {
+      "created_at": "2022-11-05T07:46:33.891Z",
+      "login": " galina@demo.ru",
+      "password": "demo",
+      "id": 12,
       "balance": {
         "RUB": 0,
         "USD": 0,
