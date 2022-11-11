@@ -18,7 +18,7 @@ let timerId = setInterval(() => {
 	ApiConnector.getStocks(data => {
 		if (data.success) {
 			newRatesBoard.clearTable();
-			newRatesBoard.fillTable(data.data)
+			newRatesBoard.fillTable(data.data);
 		}
 	})
 }, 60000);
@@ -30,9 +30,72 @@ newMoneyManager.addMoneyCallback = data => {
 			newMoneyManager.setMessage(response.success, 'Пополнение выполненно успешно');
 		}
 		else {
-			newMoneyManager.setMessage(data.error, response.error);
+			newMoneyManager.setMessage(response.success, response.error);
 		}
 	});
 };
+newMoneyManager.conversionMoneyCallback = data => {
+	ApiConnector.convertMoney(data, response => {
+		if (response.success) {
+			ProfileWidget.showProfile(response.data);
+			newMoneyManager.setMessage(response.success, 'Конвертация выполнена успешно');
+		}
+		else {
+			newMoneyManager.setMessage(response.success, response.error);
+		}
+	});
+}
+newMoneyManager.sendMoneyCallback = data => {
+	ApiConnector.transferMoney(data, response => {
+		if (response.success) {
+			ProfileWidget.showProfile(response.data);
+			newMoneyManager.setMessage(response.success, 'Перевод выполнен успешно');
+		}
+		else {
+			newMoneyManager.setMessage(response.success, response.error);
+		}
+	});
+}
+const newFavoritesWidget = new FavoritesWidget();
+ApiConnector.getFavorites(data => {
+	if (data.success) {
+		newFavoritesWidget.clearTable();
+		newFavoritesWidget.fillTable(data.data);
+		newFavoritesWidget.updateUsersList(data.data);
+	}
+})
+newFavoritesWidget.addUserCallback = data => {
+	ApiConnector.addUserToFavorites(data, response => {
+		if (response.success) {
+			newFavoritesWidget.clearTable();
+			newFavoritesWidget.fillTable(response.data);
+			newFavoritesWidget.updateUsersList(response.data);
+			newFavoritesWidget.setMessage(response.success, 'Пользователь успешно добавлен');
+		}
+		else {
+			newFavoritesWidget.setMessage(response.success, response.error);
+		}
+	})
+}
+newFavoritesWidget.removeUserCallback = data => {
+	ApiConnector.removeUserFromFavorites(data, response => {	
+		if (response.success) {
+			newFavoritesWidget.clearTable();
+			newFavoritesWidget.fillTable(response.data);
+			newFavoritesWidget.updateUsersList(response.data);
+			newFavoritesWidget.setMessage(response.success, 'Пользователь успешно удалён');
+		}
+		else {
+			newFavoritesWidget.setMessage(response.success, response.error);
+		}
+	})
+}
+
+
+
+
+
+
+
 
 
