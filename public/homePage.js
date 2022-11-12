@@ -1,5 +1,4 @@
 
-
 const newLogoutButton = new LogoutButton();
 newLogoutButton.action = () => {
 	ApiConnector.logout(data => {
@@ -61,7 +60,7 @@ ApiConnector.getFavorites(data => {
 	if (data.success) {
 		newFavoritesWidget.clearTable();
 		newFavoritesWidget.fillTable(data.data);
-		newFavoritesWidget.updateUsersList(data.data);
+		newMoneyManager.updateUsersList(data.data);
 	}
 })
 newFavoritesWidget.addUserCallback = data => {
@@ -69,24 +68,24 @@ newFavoritesWidget.addUserCallback = data => {
 		if (response.success) {
 			newFavoritesWidget.clearTable();
 			newFavoritesWidget.fillTable(response.data);
-			newFavoritesWidget.updateUsersList(response.data);
-			newFavoritesWidget.setMessage(response.success, 'Пользователь успешно добавлен');
+			newMoneyManager.updateUsersList(response.data);
+			newMoneyManager.setMessage(response.success, 'Пользователь успешно добавлен');
 		}
 		else {
-			newFavoritesWidget.setMessage(response.success, response.error);
+			newMoneyManager.setMessage(response.success, response.error);
 		}
 	})
 }
 newFavoritesWidget.removeUserCallback = data => {
-	ApiConnector.removeUserFromFavorites(data, response => {	
+	ApiConnector.removeUserFromFavorites(data, response => {
 		if (response.success) {
 			newFavoritesWidget.clearTable();
 			newFavoritesWidget.fillTable(response.data);
-			newFavoritesWidget.updateUsersList(response.data);
-			newFavoritesWidget.setMessage(response.success, 'Пользователь успешно удалён');
+			newMoneyManager.updateUsersList(response.data);
+			newMoneyManager.setMessage(response.success, 'Пользователь успешно удалён');
 		}
 		else {
-			newFavoritesWidget.setMessage(response.success, response.error);
+			newMoneyManager.setMessage(response.success, response.error);
 		}
 	})
 }
